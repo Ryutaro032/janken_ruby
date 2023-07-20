@@ -1,3 +1,4 @@
+repeat = false
 def janken 
     puts "じゃんけん..."
     puts "0[グー]1[チョキ]2[パー]"
@@ -13,15 +14,14 @@ def janken
 
     if my_number == enemy_number
         puts "あいこで..."
-        return true
+        repeat = false
+        
     elsif win = (my_number == 0 && enemy_number == 1)||(my_number == 1 && enemy_number == 2)||(my_number == 2 && enemy_number == 0)
         if win
             player_win()
         end
-        return false
     else
         player_lose()
-        return false
     end
 end
 
@@ -41,10 +41,12 @@ def player_win
     puts "あいては#{direction[enemy_number]}を出しました"
 
     if my_number != enemy_number
-        return true
+        repeat = false
+        
     elsif my_number == enemy_number
         puts "あなたの勝ちです"
-        return false
+        repeat = true
+        
     end
 end
 
@@ -64,13 +66,20 @@ def player_lose
     puts "あいては#{direction[enemy_number]}を出しました"
 
     if my_number != enemy_number
-        return true
+        repeat = false
+        
     elsif my_number == enemy_number
         puts "あなたの負けです"
-        return false
+        repeat = true
+        
     end
 end
 
-while true
-    janken
+if repeat == false
+    while
+        janken == repeat
+    end
+elsif repeat == true
+    janken == repeat
+    return
 end
